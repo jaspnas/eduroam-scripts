@@ -32,6 +32,7 @@ nmcli connection add type wifi \
     ifname "$IFNAME" \
     ssid "$SSID" \
     wifi-sec.key-mgmt wpa-eap \
+    ${DISABLE_POWERSAVE:+802-11-wireless.powersave 2} \
     802-1x.eap peap \
     802-1x.identity "$USERNAME" \
     802-1x.phase1-auth-flags "0x20" \
