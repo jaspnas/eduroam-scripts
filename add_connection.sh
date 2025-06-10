@@ -4,6 +4,16 @@
 SSID="eduroam"
 CONNECTION_NAME="eduroam"
 
+# Optional arguments
+SKIP_UP=false
+for arg in "$@"; do
+    case "$arg" in
+        --no-up)
+            SKIP_UP=true
+            ;;
+    esac
+done
+
 # Prompt for username
 read -p "Enter your username: " USERNAME
 
@@ -39,8 +49,10 @@ nmcli connection add type wifi \
     802-1x.phase2-auth mschapv2 \
     802-1x.password "$PASSWORD"
 
-# Optionally, bring the connection up
-nmcli connection up "$CONNECTION_NAME"
+# Bring the connection up
+if [ "$SKIP_UP" != true ]; then
+    nmcli connection up "$CONNECTION_NAME"
+fi
 
 # Verify the connection
 if nmcli connection show "$CONNECTION_NAME" &> /dev/null; then
