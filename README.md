@@ -4,8 +4,8 @@ Scripts to make using eduroam on linux easier
 
 ## Running the script
 
-You can run the script with: 
-`./add_connection`
+You can run the script with:
+`./add_connection.sh`
 
 There are optional environment variables
 ```

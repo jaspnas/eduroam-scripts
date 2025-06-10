@@ -4,18 +4,18 @@
 SSID="eduroam"
 CONNECTION_NAME="eduroam"
 
+# Check if nmcli is installed before asking for credentials
+if ! command -v nmcli &> /dev/null; then
+    echo "nmcli could not be found, please install NetworkManager" >&2
+    exit 1
+fi
+
 # Prompt for username
 read -p "Enter your username: " USERNAME
 
 # Prompt for password (input will be hidden)
 read -sp "Enter your password: " PASSWORD
 echo
-
-# Check if nmcli is installed
-if ! command -v nmcli &> /dev/null; then
-    echo "nmcli could not be found, please install NetworkManager"
-    exit 1
-fi
 
 # Get the first Wi-Fi interface
 IFNAME=$(nmcli device status | awk '$2 == "wifi" {print $1; exit}')
