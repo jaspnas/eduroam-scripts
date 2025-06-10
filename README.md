@@ -12,6 +12,15 @@ There are optional environment variables
 DISABLE_POWERSAVE: Disables power saving on your wifi adapter
 ```
 
+## Running tests
+
+The tests use the [Bats](https://github.com/bats-core/bats-core) framework.
+After installing `bats`, run the test suite with:
+
+```bash
+bats tests
+```
+
 ### TODO:
 
 - [ ] Add support for wpa_supplicant
